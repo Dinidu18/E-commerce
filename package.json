@@ -1,0 +1,19 @@
+{
+  "name": "ecommerce-microservices",
+  "version": "1.0.0",
+  "description": "Microservices-based E-commerce system using Express.js",
+  "scripts": {
+    "start": "concurrently \"npm run gateway\" \"npm run products\" \"npm run orders\" \"npm run finance\" \"npm run marketing\" \"npm run support\" \"npm run reviews\"",
+    "gateway": "npm --prefix api-gateway start",
+    "products": "npm --prefix product-service start",
+    "orders": "npm --prefix order-service start",
+    "finance": "npm --prefix finance-service start",
+    "marketing": "npm --prefix marketing-service start",
+    "support": "npm --prefix customer-support-service start",
+    "reviews": "npm --prefix reviews-service start",
+    "install:all": "npm install && npm --prefix api-gateway install && npm --prefix product-service install && npm --prefix order-service install && npm --prefix finance-service install && npm --prefix marketing-service install && npm --prefix customer-support-service install && npm --prefix reviews-service install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Shop Manager - Control Your Commerce</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav>
+        <div class="nav-content">
+            <div class="logo">
+                <span class="logo-icon">🛒</span>
+                <div class="logo-text-wrapper">
+                    <span class="logo-text">E-Shop Manager</span>
+                    <span class="logo-subtitle">Unified Control Center</span>
+                </div>
+            </div>
+            <div class="nav-links">
+                <span id="gateway-status" class="status-badge pulse">
+                    <span class="status-indicator"></span>
+                    All Systems Online
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <header>
+            <div class="header-content">
+                <h1>Welcome to Your <span class="gradient-text">Commerce Hub</span></h1>
+                <p class="header-subtitle">Manage all aspects of your e-commerce business from one powerful dashboard</p>
+            </div>
+        </header>
+
+        <section class="stats-row">
+            <div class="stat-card glass shadow-hover">
+                <div class="stat-header">
+                    <span class="stat-icon">⚙️</span>
+                    <span class="stat-label">Active Services</span>
+                </div>
+                <span class="stat-value">6</span>
+                <p class="stat-note">All running smoothly</p>
+            </div>
+            <div class="stat-card glass shadow-hover">
+                <div class="stat-header">
+                    <span class="stat-icon">✅</span>
+                    <span class="stat-label">System Status</span>
+                </div>
+                <span class="stat-value text-success">Operational</span>
+                <p class="stat-note">100% responsive</p>
+            </div>
+            <div class="stat-card glass shadow-hover">
+                <div class="stat-header">
+                    <span class="stat-icon">🚀</span>
+                    <span class="stat-label">Latest Version</span>
+                </div>
+                <span class="stat-value">v1.2.0</span>
+                <p class="stat-note">Up to date</p>
+            </div>
+        </section>
+
+        <div class="services-section">
+            <div class="section-header">
+                <h2>Your Business Tools</h2>
+                <p>Click any service to explore documentation or jump directly to the endpoint</p>
+            </div>
+            <div class="services-grid" id="services-grid">
+                <!-- Service cards will be generated here -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>E-Commerce Microservices Hub • Powered by Node.js & Express • © 2026</p>
+    </footer>
+
+    <script>
+        const SERVICES = [
+            { 
+                id: 'products', 
+                name: 'Products & Inventory', 
+                port: 5001, 
+                icon: '📦', 
+                color: '#58a6ff', 
+                desc: 'Manage your catalog, track stock levels, set prices, and organize inventory across multiple locations'
+            },
+            { 
+                id: 'orders', 
+                name: 'Orders & Fulfillment', 
+                port: 5002, 
+                icon: '📋', 
+                color: '#7ee787', 
+                desc: 'View, process, and track customer orders from placement through shipping and delivery'
+            },
+            { 
+                id: 'finance', 
+                name: 'Finance & Payments', 
+                port: 5003, 
+                icon: '💰', 
+                color: '#da7aff', 
+                desc: 'Track transactions, issue invoices, process refunds, and manage your revenue'
+            },
+            { 
+                id: 'marketing', 
+                name: 'Promotions & Offers', 
+                port: 5004, 
+                icon: '🎁', 
+                color: '#ffa657', 
+                desc: 'Create discounts, launch campaigns, manage coupons, and boost customer engagement'
+            },
+            { 
+                id: 'support', 
+                name: 'Customer Support', 
+                port: 5005, 
+                icon: '💬', 
+                color: '#ff7b72', 
+                desc: 'Handle customer inquiries, manage support tickets, and provide responsive assistance'
+            },
+            { 
+                id: 'reviews', 
+                name: 'Reviews & Feedback', 
+                port: 5006, 
+                icon: '⭐', 
+                color: '#f2cc60', 
+                desc: 'Monitor customer ratings, curate feedback, and build trust through quality reviews'
+            }
+        ];
+
+        const grid = document.getElementById('services-grid');
+
+        SERVICES.forEach(service => {
+            const card = document.createElement('div');
+            card.className = 'service-card glass shadow-hover';
+            card.style.setProperty('--accent-color', service.color);
+            
+            card.innerHTML = `
+                <div class="card-top">
+                    <span class="service-icon">${service.icon}</span>
+                    <div class="card-status">
+                        <span class="status-dot"></span>
+                        <span class="status-label">Ready</span>
+                    </div>
+                </div>
+                <h3>${service.name}</h3>
+                <p>${service.desc}</p>
+                <div class="card-actions">
+                    <a href="http://localhost:${service.port}/api-docs" target="_blank" class="btn btn-primary">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6M9 8h6m-9-3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg>
+                        <span>View Documentation</span>
+                    </a>
+                    <a href="http://localhost:8080/${service.id}" target="_blank" class="btn btn-secondary">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                        <span>Open Service</span>
+                    </a>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+</html>
